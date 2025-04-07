@@ -4,6 +4,7 @@ metadata:
   labels:
     app: result
   name: result
+  namespace: voting-app
 spec:
   replicas: 1
   selector:
@@ -15,8 +16,8 @@ spec:
         app: result
     spec:
       containers:
-      - image: dockersamples/examplevotingapp_result
+      - image: image-registry.openshift-image-registry.svc:5000/voting-app/example-voting-app-result:latest
         name: result
         ports:
-        - containerPort: 80
+        - containerPort: 3000
           name: result

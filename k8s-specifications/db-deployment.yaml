@@ -4,6 +4,7 @@ metadata:
   labels:
     app: db
   name: db
+  namespace: voting-app
 spec:
   replicas: 1
   selector:
@@ -15,12 +16,12 @@ spec:
         app: db
     spec:
       containers:
-      - image: postgres:15-alpine
+      - image: bitnami/postgresql:latest
         name: postgres
         env:
-        - name: POSTGRES_USER
+        - name: POSTGRESQL_USERNAME
           value: postgres
-        - name: POSTGRES_PASSWORD
+        - name: POSTGRESQL_PASSWORD
           value: postgres
         ports:
         - containerPort: 5432
@@ -30,4 +31,5 @@ spec:
           name: db-data
       volumes:
       - name: db-data
-        emptyDir: {} 
+        persistentVolumeClaim:
+          claimName: postgresql-pvc

@@ -4,6 +4,7 @@ metadata:
   labels:
     app: redis
   name: redis
+  namespace: voting-app
 spec:
   replicas: 1
   selector:
@@ -25,4 +26,5 @@ spec:
           name: redis-data
       volumes:
       - name: redis-data
-        emptyDir: {} 
+        persistentVolumeClaim:
+          claimName: redis-pvc
