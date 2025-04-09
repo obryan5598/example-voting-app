@@ -18,3 +18,5 @@ spec:
       containers:
       - image: dockersamples/examplevotingapp_worker
         name: worker
+        securityContext:
+          readOnlyRootFilesystem: true
